@@ -1,46 +1,29 @@
 """
-llama_notifications: Privacy-preserving multi-channel notification service.
-
-A comprehensive notification delivery system with MLX-accelerated processing,
-Neural Engine spam filtering, end-to-end encryption, and context-aware delivery.
-
-Features:
-- Multi-channel support (Push, SMS, Email)
-- MLX-accelerated priority routing
-- Neural Engine spam filtering
-- End-to-end encryption
-- TEE-protected processing
-- GDPR-compliant receipt handling
-- Context-aware delivery
-
-Example usage:
-    from llama_notifications.service import (
-        NotificationService, NotificationRequest, NotificationContent,
-        RecipientInfo, ChannelType
-    )
-
-    # Initialize service
-    service = NotificationService()
-
-    # Create and send notification
-    recipient = RecipientInfo(user_id="user123", email="user@example.com")
-    content = NotificationContent(title="Hello", body="Test notification")
-    request = NotificationRequest(recipient=recipient, content=content,
-                                 channels=[ChannelType.EMAIL])
-    results = service.send(request)
+LlamaNotifications - System for managing and delivering notifications.
 """
 
-# Import main components for easier access
-from .package import (
-    ChannelType,
-    DeliveryStatus,
-    EncryptionType,
-    NotificationContent,
-    NotificationRequest,
-    Priority,
-    RecipientInfo,
-    UserPreferences,
-)
+from .core import Notifier
+from .message import Message
+from .config import NotificationConfig
+from .priority import PriorityManager
+from .spam_filter import SpamFilter
+from .context import ContextManager
+from .package import PackageManager
+from .security import SecurityManager
+# Keep other potential exports commented for now
+# from .security import SecurityManager
+# ... etc
 
-__version__ = "0.1.0"
-__author__ = "Llama Notifications Team"
+__version__ = "0.1.1" # Bump version slightly due to refactor
+
+__all__ = [
+    "Notifier",
+    "Message",
+    "NotificationConfig",
+    "PriorityManager",
+    "SpamFilter",
+    "ContextManager",
+    "PackageManager",
+    "SecurityManager",
+    # Add other core classes here when ready
+]
